@@ -17,8 +17,9 @@ new maplibregl.Map({ container: "map", style: "https://map.juulieen.fr/styles/ju
 
 Le style pointe vers les fichiers servis par `map.juulieen.fr` (CORS ouvert) :
 `france.pmtiles` (planète du zoom 0 au 6, Europe de l'Ouest du zoom 7 au 15),
-les polices et les icônes Protomaps. Le relief vient des tuiles d'altitude
-ouvertes Terrarium (AWS Open Data).
+les polices et les icônes Protomaps, et `relief.pmtiles`, les altitudes
+[Mapterhorn](https://mapterhorn.com) (codage Terrarium : planète du zoom 0 au 6,
+Europe de l'Ouest du 7 au 12, environ 13 m par point).
 
 ## Thème seul, avec vos propres tuiles
 
@@ -41,4 +42,4 @@ npm run build        # écrit site/styles/juulieen.json
 Code sous licence BSD-3-Clause (voir `LICENSE`), dérivé de
 [`@protomaps/basemaps`](https://github.com/protomaps/basemaps) (BSD-3-Clause).
 Données cartographiques © [OpenStreetMap](https://www.openstreetmap.org/copyright)
-(ODbL), relief © Mapzen Terrarium.
+(ODbL), relief © [Mapterhorn](https://mapterhorn.com/attribution).

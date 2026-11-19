@@ -17,14 +17,14 @@ const style = {
       url: `pmtiles://${BASE}/france.pmtiles`,
       attribution: '<a href="https://openstreetmap.org/copyright">© OpenStreetMap</a>',
     },
-    // Altitudes ouvertes (Terrarium, AWS Open Data), sans clé.
+    // Altitudes Mapterhorn (codage Terrarium, tuiles webp de 512 px) : planète
+    // jusqu'au zoom 6, Europe de l'Ouest du 7 au 12 (~13 m par point).
     relief: {
       type: "raster-dem",
-      tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
+      url: `pmtiles://${BASE}/relief.pmtiles`,
       encoding: "terrarium",
-      tileSize: 256,
-      maxzoom: 12,
-      attribution: "Relief : Mapzen Terrarium",
+      tileSize: 512,
+      attribution: '<a href="https://mapterhorn.com/attribution">© Mapterhorn</a>',
     },
   },
   layers: juulieenLayers("protomaps", "fr"),
