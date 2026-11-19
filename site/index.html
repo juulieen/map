@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carte juulieen</title>
+  <meta name="description" content="Carte OpenStreetMap auto-hébergée, thème juulieen (tuiles Protomaps).">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.21.1/dist/maplibre-gl.css">
+  <script src="https://unpkg.com/maplibre-gl@5.21.1/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js"></script>
+  <style>
+    :root { --ink: #3b3833; --muted: #6a645b; --card: rgba(250, 248, 242, 0.92); --accent: #f57c20; }
+    html, body { margin: 0; height: 100%; background: #ece6da; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    #map { position: absolute; inset: 0; }
+    .card {
+      position: absolute; top: 12px; left: 12px; z-index: 2; max-width: min(320px, calc(100vw - 24px));
+      padding: 12px 14px; border-radius: 12px; background: var(--card); color: var(--ink);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12); backdrop-filter: blur(6px);
+    }
+    .card h1 { margin: 0 0 4px; font-size: 16px; letter-spacing: 0.02em; }
+    .card h1 span { color: var(--accent); }
+    .card p { margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
+    .card a { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="card">
+    <h1>map<span>.</span>juulieen<span>.</span>fr</h1>
+    <p>Carte OpenStreetMap auto-hébergée : tuiles Protomaps (planète en vue large, Europe de l'Ouest en détail), thème <a href="styles/juulieen.json">juulieen</a>, relief Terrarium.</p>
+  </div>
+  <script>
+    const protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles", protocol.tile);
+    const map = new maplibregl.Map({
+      container: "map",
+      style: "styles/juulieen.json",
+      center: [2.4, 46.6],
+      zoom: 5,
+      hash: true,
+      maxZoom: 17,
+    });
+    map.addControl(new maplibregl.NavigationControl(), "top-right");
+    map.addControl(new maplibregl.ScaleControl({ unit: "metric" }), "bottom-left");
+    map.on("style.load", () => {
+      // Globe vu de loin, carte plate dès la vue régionale.
+      map.setProjection({ type: ["interpolate", ["linear"], ["zoom"], 3, "vertical-perspective", 5, "mercator"] });
+    });
+  </script>
+</body>
+</html>

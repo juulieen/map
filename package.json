@@ -1,0 +1,12 @@
+{
+  "name": "juulieen-map",
+  "private": true,
+  "type": "module",
+  "description": "Thème juulieen pour les tuiles Protomaps et page d'exploration de map.juulieen.fr",
+  "scripts": {
+    "build": "node src/build-style.mjs"
+  },
+  "dependencies": {
+    "@protomaps/basemaps": "5.7.2"
+  }
+}
