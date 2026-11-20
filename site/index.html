@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.21.1/dist/maplibre-gl.css">
   <script src="https://unpkg.com/maplibre-gl@5.21.1/dist/maplibre-gl.js"></script>
   <script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js"></script>
+  <script src="overzoom.js"></script>
   <style>
     :root { --ink: #3b3833; --muted: #6a645b; --card: rgba(250, 248, 242, 0.92); --accent: #f57c20; }
     html, body { margin: 0; height: 100%; background: #ece6da; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -27,11 +28,11 @@
   <div id="map"></div>
   <div class="card">
     <h1>map<span>.</span>juulieen<span>.</span>fr</h1>
-    <p>Carte OpenStreetMap auto-hébergée : tuiles Protomaps (planète en vue large, Europe de l'Ouest en détail), thème <a href="styles/juulieen.json">juulieen</a>, relief Mapterhorn.</p>
+    <p>Carte OpenStreetMap auto-hébergée : tuiles Protomaps (planète en vue large, Europe de l'Ouest en détail), thème <a href="styles/juulieen.json">juulieen</a>, relief Mapterhorn (détaillé en France).</p>
   </div>
   <script>
     const protocol = new pmtiles.Protocol();
-    maplibregl.addProtocol("pmtiles", protocol.tile);
+    maplibregl.addProtocol("pmtiles", reliefOverzoom(protocol, "https://map.juulieen.fr/relief.pmtiles"));
     const map = new maplibregl.Map({
       container: "map",
       style: "styles/juulieen.json",

@@ -18,7 +18,8 @@ const style = {
       attribution: '<a href="https://openstreetmap.org/copyright">© OpenStreetMap</a>',
     },
     // Altitudes Mapterhorn (codage Terrarium, tuiles webp de 512 px) : planète
-    // jusqu'au zoom 6, Europe de l'Ouest du 7 au 12 (~13 m par point).
+    // jusqu'au zoom 6, Europe de l'Ouest du 7 au 12 (~13 m par point), France
+    // du 13 au 15 (~1,7 m). Tuiles absentes : voir site/overzoom.js.
     relief: {
       type: "raster-dem",
       url: `pmtiles://${BASE}/relief.pmtiles`,
